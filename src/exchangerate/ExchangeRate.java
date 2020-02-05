@@ -24,7 +24,7 @@ public class ExchangeRate
             System.out.println("Connexion Cerrada");   
           } catch (SQLException e)
             {
-             System.out.println("Connexion no se pudo Cerrada");
+             System.out.println("Connexion no se pudo Cerrar");
             }   
     }
  }
