@@ -4,18 +4,28 @@
  * and open the template in the editor.
  */
 package exchangerate;
-
+import com.mysql.jdbc.Connection;
+import java.sql.SQLException;
 /**
  *
  * @author OM000402
  */
-public class ExchangeRate {
+public class ExchangeRate
+{   
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+ public static void main(String[] args)
+ {
+    ConnectionDB SQL = new ConnectionDB();
+    Connection conn = SQL.conectarMySQL();
+    if (conn != null)
+    {
+       try{
+            conn.close();
+            System.out.println("Connexion Cerrada");   
+          } catch (SQLException e)
+            {
+             System.out.println("Connexion no se pudo Cerrada");
+            }   
     }
-    
+ }
 }
