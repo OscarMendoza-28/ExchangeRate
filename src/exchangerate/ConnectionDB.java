@@ -17,21 +17,65 @@ private static final String driver   = "com.mysql.jdbc.Driver";
 private static final String hostname = "localhost";
 private static final String port     = "3306";
 private static final String database = "exchangerate";
-private static final String user     = "root";
-private static final String pass     = "tecmilenio";
-private static       String url      = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
-private static   Connection MyDBConn;
+private static final String url      = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
 
-public Connection conectarMySQL() {
-    MyDBConn = null;
-    try {
-         Class.forName(driver);
-         MyDBConn = (Connection) DriverManager.getConnection(url, user, pass);
-         } catch (ClassNotFoundException | SQLException e) {
-         /*e.printStackTrace(); */
-           System.out.println(String.valueOf(e));   
-        }
-        System.out.println("Connexion establecida");   
-        return MyDBConn;
+private Connection MyDBConn = null;
+private String user = "";
+private String pass = "";
+
+
+public String getUser() {
+ return user;
+}
+
+public void setUser(String user)
+{
+ this.user = user;
+}
+
+public String getPass()
+{
+ return pass;
+}
+
+public void setPass(String pass)
+{
+ this.pass = pass;
+}
+
+public Connection getMyDBConn()
+{
+ return MyDBConn;
+}
+
+public void ConectMySQL()
+ {
+  try {
+       Class.forName(driver);
+       this.MyDBConn = (Connection) DriverManager.getConnection(url, this.user, this.pass);
+       if (this.MyDBConn != null)
+           System.out.println("Connexion establecida"); 
+      } catch (ClassNotFoundException | SQLException e)
+       {
+        /* System.out.println(String.valueOf(e)); */
+           System.out.println(e.getMessage());
+           System.exit(107);
+       }     
+ }
+public void DisConectMySQL() {
+ if (this.MyDBConn != null)
+  try{
+      this.MyDBConn.close();
+      System.out.println("Connexion Cerrada");   
+     } catch (SQLException e)
+       {
+        System.out.println("Connexion no se pudo Cerrar");
+        System.exit(108);
+       } 
+  else
+     {
+      System.out.println("No hay connexion abierta");
+      System.exit(109);
+     }
   }
 }
