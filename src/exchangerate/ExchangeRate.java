@@ -123,7 +123,7 @@ private static Date     dFechFin;
    DateValidator Validador = new DtIsVaidFormat("yyyy-MM-dd");   
    if (Validador.isValid(sFechIni) == false)
       {
-        System.out.println("Parametro -FechFin= No es una fecha valida"); 
+        System.out.println("Parametro -FechIni= No es una fecha valida"); 
         System.exit(104);
       }
    if (Validador.isValid(sFechFin) == false)
