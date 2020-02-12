@@ -8,16 +8,20 @@ package exchangerate;
  *
  * @author OM000402
  */
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDB {
-private static final String driver   = "com.mysql.jdbc.Driver";
+//private static final String driver   = "com.mysql.jdbc.Driver";
+private static final String driver   = "com.mysql.cj.jdbc.Driver";
 private static final String hostname = "localhost";
 private static final String port     = "3306";
 private static final String database = "exchangerate";
-private static final String url      = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
+//private static final String url      = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
+//In Mysql execute:
+//SET GLOBAL time_zone = '-3:00';
+private static final String url      = "jdbc:mysql://" + hostname + ":" + port + "/?serverTimezone=UTC/information_schema/" + database + "?useSSL=false";
 
 private Connection MyDBConn = null;
 private String user = "";
@@ -48,10 +52,10 @@ public Connection getMyDBConn()
  return MyDBConn;
 }
 
-public void ConectMySQL()
+public void ConectMySQL() throws InstantiationException, IllegalAccessException
  {
   try {
-       Class.forName(driver);
+       Class.forName(driver).newInstance();
        this.MyDBConn = (Connection) DriverManager.getConnection(url, this.user, this.pass);
        if (this.MyDBConn != null)
            System.out.println("Connexion establecida"); 
