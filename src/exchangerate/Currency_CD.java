@@ -10,7 +10,7 @@ package exchangerate;
  */
 import java.sql.*;
 import java.util.Date;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 public class Currency_CD {
  private String    CURRENCY_CD;
