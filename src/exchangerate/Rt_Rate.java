@@ -10,7 +10,7 @@ package exchangerate;
  */
 import java.sql.*;
 import java.util.Date;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 public class Rt_Rate {
  private String    RT_RATE_INDEX;
